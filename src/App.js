@@ -10,7 +10,8 @@ class App extends Component {
       { name: 'Bartosz', age:32 },
       { name: 'ania', age: 25 }
     ],
-    otherState: 'some value'
+    otherState: 'some value',
+    showPerson: false
   }
 
   switchNameHandler = (newName) => {
@@ -33,6 +34,11 @@ class App extends Component {
     })
   }
 
+  togglePersonHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow});
+  }
+
   render(){
     const style = {
       backgroundColor: 'white',
@@ -48,23 +54,27 @@ class App extends Component {
         <button
         style={style} 
         //onClick={this.switchNameHandler.bind(this, 'Max')}
-        onClick={() => this.switchNameHandler('anastazja')} //<---another method, we pass anonymous function which will be executed on a click and then resulst of this function getting executed
-        >Switch Name</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}/>
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Bartłomiej!')}
-          changed={this.nameChangeHandler}> 
-          My hobbies: cooking</Person>
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}> 
-          
-          My hobbies: cooking</Person>
-        <Person />
+        onClick={this.togglePersonHandler} //<---another method, we pass anonymous function which will be executed on a click and then resulst of this function getting executed
+        >Show persons</button>
+        { 
+          this.state.showPersons ?  <div>
+          <Person 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age}/>
+          <Person 
+            name={this.state.persons[1].name} 
+            age={this.state.persons[1].age}
+            click={this.switchNameHandler.bind(this, 'Bartłomiej!')}
+            changed={this.nameChangeHandler}> 
+            My hobbies: cooking</Person>
+          <Person 
+            name={this.state.persons[2].name} 
+            age={this.state.persons[2].age}> 
+            
+            My hobbies: cooking</Person>
+          <Person />
+        </div> : null
+         }
       </div>
     ); 
   }
