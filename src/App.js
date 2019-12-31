@@ -48,16 +48,11 @@ class App extends Component {
       cursor: 'pointer'
     };
 
-   return (
-      <div className="App">
-        <h1> Hi, I'm a react app from Jakub!</h1>
-        <button
-        style={style} 
-        //onClick={this.switchNameHandler.bind(this, 'Max')}
-        onClick={this.togglePersonHandler} //<---another method, we pass anonymous function which will be executed on a click and then resulst of this function getting executed
-        >Show persons</button>
-        { 
-          this.state.showPersons ?  <div>
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
           <Person 
             name={this.state.persons[0].name} 
             age={this.state.persons[0].age}/>
@@ -73,8 +68,20 @@ class App extends Component {
             
             My hobbies: cooking</Person>
           <Person />
-        </div> : null
-         }
+        </div>
+        
+      );
+    }
+
+   return (
+      <div className="App">
+        <h1> Hi, I'm a react app from Jakub!</h1>
+        <button
+        style={style} 
+        //onClick={this.switchNameHandler.bind(this, 'Max')}
+        onClick={this.togglePersonHandler} //<---another method, we pass anonymous function which will be executed on a click and then resulst of this function getting executed
+        >Toggle persons</button>
+        {persons}
       </div>
     ); 
   }
