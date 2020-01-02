@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
+import styled from 'styled-components';
 
+const StyledButton = styled.button`
+  background-Color: ${props => props.alt ? 'red' :  'green' };
+  color: white;
+  font: inherit; 
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  
+  &:hover {
+  background-Color: lightgreen;
+  color: black;
+}
+`;
 class App extends Component {
   state = {
     persons: [
@@ -45,16 +58,15 @@ class App extends Component {
     const style = {
       backgroundColor: 'green',
       color: 'white',
-      font: 'inherit', 
-      border: '1px solid blue', 
-      padding: '8px', 
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
       cursor: 'pointer',
-      ':hover': {
+      ':hover' :{
         backgroundColor: 'lightgreen',
         color: 'black'
       }
-    };
-
+    }
     let persons = null;
 
     if (this.state.showPersons) {
@@ -74,8 +86,8 @@ class App extends Component {
       style[':hover'] = {
         backgroundColor: 'salmon',
         color: 'black'
-      };
-    }
+      }
+    };
 
     const classes = [];
     if ( this.state.persons.length <= 2) {
@@ -86,20 +98,17 @@ class App extends Component {
   }
 
    return (
-     <StyleRoot>
       <div className="App">
         <h1> Hi, I'm a react app from Jakub!</h1>
         <p className={classes.join(' ')}>It works!</p>
-        <button
-        style={style} 
-        //onClick={this.switchNameHandler.bind(this, 'Max')}
+        <StyledButton
+        alt={this.state.showPersons}
         onClick={this.togglePersonHandler} //<---another method, we pass anonymous function which will be executed on a click and then resulst of this function getting executed
-        >Toggle persons</button>
+        >Toggle persons</StyledButton>
         {persons}
       </div>
-      </StyleRoot>
     ); 
   }
 }
 
-export default Radium(App);
+export default App;
