@@ -2,13 +2,6 @@
   text-align: center;
 }
 
-.red {
-  color: red;
-}
-
-.bold {
-  font-weight: bold;
-}
 
 .App button {
   background-Color: green;
@@ -19,10 +12,3 @@
   cursor: pointer;
   }
 
-  .App button.Red {
-    background-Color: red;
-  }
-
-  .App button.Red:hover {
-    background-Color: salmon;
-  }
