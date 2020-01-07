@@ -12,9 +12,9 @@ class App extends Component {
 
   state = {
     persons: [
-      { id: '1a', name: 'Jakub', age: 23 },
-      { id: '2a', name: 'Bartosz', age:32 },
-      { id: '3a', name: 'ania', age: 25 }
+      { id: '1asd', name: 'Jakub', age: 23 },
+      { id: 'sdads', name: 'Bartosz', age:32 },
+      { id: 'werw', name: 'ania', age: 25 }
     ],
     otherState: 'some value',
     showPerson: false
@@ -35,6 +35,15 @@ class App extends Component {
     console.log('[App.js] ComponentDidMount');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] ComponentDidUpdate');
+  }
+
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -46,7 +55,7 @@ class App extends Component {
   person.name = event.target.value;
 
   const persons = [...this.state.persons];
-  persons[personIndex] = [person];
+  persons[personIndex] = person;
 
     this.setState( {persons: persons} )
   }
